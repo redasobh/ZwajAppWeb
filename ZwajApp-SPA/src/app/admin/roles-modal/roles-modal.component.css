@@ -1,0 +1,22 @@
+[type="checkbox"]:before  {
+    content: "";
+    position: absolute;
+    top: -1.2em;
+    width: 27px;
+    height: 25px;
+    border: 3px solid #333;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* ✔ */
+
+[type="checkbox"]:checked:after {
+    content: "✔";
+   
+    color: #E95420 !important;
+}
+
+.modal-footer{
+    display: block !important;
+}

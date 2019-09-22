@@ -1,0 +1,57 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="btn-group">
+      <button class="btn btn-dark btn-up ajs-button mr-1" [(ngModel)]="messageType" btnRadio="Unread" (click)="loadMessages()" [ngStyle]="{'background':messageType =='Unread'?'red' : ''}">
+        <i class="fa fa-envelope"></i> غير مقروءة
+      </button>
+      <button class="btn btn-dark btn-up ajs-button mr-1" [(ngModel)]="messageType" btnRadio="Inbox" (click)="loadMessages()" [ngStyle]="{'background':messageType =='Inbox'?'red' : ''}">
+        <i class="fa fa-envelope-open"></i> رسائل واردة
+      </button>
+      <button class="btn btn-dark btn-up ajs-button" [(ngModel)]="messageType" btnRadio="Outbox" (click)="loadMessages()" [ngStyle]="{'background':messageType =='Outbox'?'red' : ''}">
+        <i class="fa fa-paper-plane"></i> رسائل صادرة
+      </button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="messages.length == 0">
+    <h3>لا توجد رسائل</h3>
+  </div>
+
+  <div class="row" *ngIf="messages.length > 0">
+    <table class="table table-hover" style="cursor: pointer;font-family:'Droid-Arabic-Kufi';">
+      <tr>
+        <th style="text-align: right;width: 40%">رسالة</th>
+        <th style="text-align: center;width: 20%">{{messageType=='Unread'|| messageType=='Inbox'?'من':'إلى'}}</th>
+        <th style="text-align: center;width: 20%">{{messageType=='Unread'|| messageType=='Inbox'?'مستلمة':'مرسلة'}}</th>
+        <th style="width: 20%"></th>
+      </tr>
+      <tr *ngFor="let message of messages" [routerLink]="['/members', 
+        messageType == 'Outbox' ? message.recipientId : message.senderId]" [queryParams]="{tab:3}">
+        <td style="text-align: right;">{{message.content | slice:0:135}}</td>
+        <td style=" text-align: center;cursor: pointer;font-size:12px;font-family:'Droid-Arabic-Kufi';">
+          <div style="text-align: center;" *ngIf="messageType != 'Outbox'">
+            <strong style="font-size:15px;">{{message.senderKnownAs}}</strong>
+                <img style="max-height:50px;" src={{message?.senderPhotoUrl}} class="img-circle rounded-circle ml-1">
+                  </div>
+          <div *ngIf="messageType == 'Outbox'">
+              <strong style="font-size:15px;">{{message.recipientKnownAs}}</strong>
+                <img style="max-height:50px;" src={{message?.recipientPhotoUrl}} class="img-circle rounded-circle ml-1">
+                 </div>
+        </td>
+        <td>{{message.messageSent | timeAgo}}</td>
+        <td>
+          <div (click)="$event.stopPropagation();" (click)="deleteMessage(message.id);" class="text text-danger"><i style="font-size:28px;" class="fa fa-trash-o" title="حذف" aria-hidden="true"></i></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" 
+                [totalItems]="pagination.totalItems"
+                [itemsPerPage]="pagination.itemsPerPage"
+                [(ngModel)]="pagination.currentPage"
+                (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+  </pagination>
+  </div>

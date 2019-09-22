@@ -1,0 +1,18 @@
+<div class="row">
+<table class="table">
+<tr>
+  <th style="width: 10%">معرف</th>
+  <th style="width: 30%">إسم المستخدم</th>
+  <th style="width: 40%">الأدوار</th>
+  <th style="width: 20%"></th>
+</tr>
+<tr *ngFor="let user of users">
+<td>{{user.id}}</td>
+<td>{{user.userName}}</td>
+<td><span class="role-badge" *ngFor="let role of user.roles">{{role}}</span></td>
+<td><button (click)="editRolesModal(user);" class="btn ajs-button ajs-header"> تعديل الأدوار</button></td>
+<td><button (click)="userId=user.id;getUserReport();" class="btn ajs-button ajs-header">  طباعة</button></td>
+
+</tr>
+</table>
+</div>

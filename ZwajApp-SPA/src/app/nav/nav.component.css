@@ -1,0 +1,56 @@
+.nav-link:hover, .nav-link:focus {
+    text-decoration: none;
+    color: pink !important;
+}
+
+.nav-link {
+  color:white !important;
+}
+.btn-secondary{
+  cursor: pointer;
+}
+.btn-secondary:enabled:hover {
+    text-decoration: none;
+    color: black !important;
+    background:pink !important
+      }
+.dropdown-toggle, .dropdown-item{
+  cursor: pointer;
+}
+.mnav-link:hover, .nav-link:focus {
+  text-decoration: none;
+  color: pink;
+}
+.mnav-link {
+  color: black !important;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  font-family: 'JF Flat';
+  font-size: 1.0rem;
+}
+input{
+  font-size: 17px;
+  font-weight: bold;
+  padding: 5px;
+}
+img{
+  max-height: 50px;
+  border: 2px solid white;
+  display: inline;;
+  border-radius: 50px;
+}
+.notification {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+.notification .badge {
+  position: absolute;
+  top: 2px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  color: #333333;
+  font-size: 16px;
+  font-family: 'tajawal';
+}

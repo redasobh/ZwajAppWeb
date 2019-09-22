@@ -1,0 +1,78 @@
+.header {
+    text-align: center;
+    padding-bottom: 35px;
+}
+
+table {
+    width: 80%;
+    color:rgb(10, 1, 1) !important;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-left:10%;
+     margin-right:10%;
+          
+}
+ 
+td {
+    
+    padding: 10px!important;
+    text-align: center;
+    font-family:'jf-flat' !important;
+    font-size:1.6rem !important;
+     
+}
+
+
+ 
+table th {
+    font-family:'JF Flat' !important;
+    font-size:1.7rem !important;
+    text-align: center;
+    border-bottom: 2px solid #E95420 !important;
+    padding: 10px!important;
+    
+    
+}
+
+.header{
+    text-align: center !important;
+    border-bottom: 4px solid #E95420 !important;
+    border-right: 4px solid #E95420 !important;
+    border-left: 4px solid #E95420 !important;
+    /* background-color: #333 !important; */
+    color:rgb(2, 2, 2) !important;
+    font-weight:bolder !important;
+    font-family:'JF Flat' !important;
+    font-size:1.8rem !important;
+    border-radius: 10px !important; 
+    
+   
+   
+  }
+  .container{
+  /* height: 10px; */
+  margin-left: auto;
+  margin-right: auto;
+  padding-top:auto;
+  padding-bottom: auto;
+  
+ 
+}
+
+.header-up{
+    text-align: center !important;
+    border-top: 4px solid #E95420 !important;
+       /* background-color: #333 !important; */
+    color:rgb(2, 2, 2) !important;
+    font-weight:bolder !important;
+    font-family:'JF Flat' !important;
+    font-size:1.7rem !important;
+    padding-top: 15px;
+    
+  }
+ 
+ .container-up{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 170px;
+       }

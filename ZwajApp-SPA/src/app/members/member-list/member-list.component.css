@@ -1,0 +1,41 @@
+:host /deep/ .pagination {
+    font-size: 25px;
+    font-family:'Tajawal';
+}
+:host /deep/ .page-item .page-link, input {
+    border-radius: 5px 5px 5px 5px/25px 25px 25px 5px;
+}
+:host /deep/ label {
+    font-size: 20px;
+    font-family:'Tajawal';
+}
+:host /deep/ input,select ,option{
+    font-size: 18px;
+    font-family:'Tajawal';
+}
+.btn-dark:enabled:hover {
+    text-decoration: none;
+    color: black !important;
+    background: pink !important;
+}
+.btn-up {
+    border-radius: 16px 16px 0 0/13px 17px 16px 16px !important;
+    border: none !important;
+}
+.btn-down {
+    border-radius: 0px 0px 16px 16px/16px 16px 16px 16px !important;
+    border: none !important;
+}
+.ajs-button:active,.ajs-button:focus{
+ background: rgb(250, 167, 181);
+ border: none !important;
+text-decoration: none;
+color: black;
+outline: none !important;
+outline: 0 !important;
+}
+button:focus {
+    outline: 0 !important;
+    outline: none !important;
+    box-shadow: none;
+}

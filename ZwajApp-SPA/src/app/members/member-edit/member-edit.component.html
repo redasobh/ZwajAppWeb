@@ -1,0 +1,97 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <h1>الملف الشخصي</h1>
+    </div>
+    <div class="col-sm-8">
+       <div *ngIf="editForm.dirty" class="alert alert-info">
+        <strong>تنوية</strong>
+        يجب حفظ التعديلات التى تمت على ملفك الشخصي
+       </div>
+      </div>
+    <div class="col-sm-4 mt-3">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{photoUrl || 'assets/User.png'}}" alt="{{user.knownAs}}">
+        <div class="card-body">
+          <div>
+            <strong>مكان الاقامة </strong>
+            <p>{{user.country}}, {{user.city}}</p>
+          </div>
+          <div>
+            <strong>العمر</strong>
+            <p>{{user.age}}</p>
+          </div>
+          <div>
+            <strong> آخر ظهور</strong>
+            <p>{{user.lastActive}}</p>
+          </div>
+          <div>
+            <strong> مشترك منذ</strong>
+            <p>{{user.created}}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div>
+            <!--(click)="editForm.reset(user)"-->
+            <button form="editForm"  [disabled]="!editForm.dirty" class="btn btn-success btn-block">حفظ التعديلات</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-Panel">
+        <tabset class="member-tabset">
+          <tab heading="بياناتي">
+            <form #editForm ="ngForm" id="editForm" (ngSubmit) ="updateUser()">
+
+            <div class="card">
+                <div class="card-header">
+                    <h4>أعرفك بنفسي</h4>
+                  </div>
+                  <div class="card-text mt-3 p-2">
+                    <textarea name="introduction" [(ngModel)]="user.introduction"  class="form-control border-white"></textarea>
+                </div>
+            </div> 
+           
+
+            <div class="card mt-4">
+                <div class="card-header">
+                  <h4>أبحث عن</h4>
+                  </div>
+                <div class="card-text mt-3 p-2">
+                    <textarea name="lookFor" [(ngModel)]="user.lookFor"  class="form-control border-white"></textarea>
+                </div>
+            </div> 
+            <div class="card mt-4">
+              <div class="card-header">
+                  <h4>هواياتي</h4>
+                </div>
+                <div class="card-text mt-3 p-2">
+                    <textarea name="interests" [(ngModel)]="user.interests"  class="form-control border-white"></textarea>
+                </div>
+            </div> 
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h4>مكان الاقامة</h4>
+                </div>
+                <div class="card-text mt-3 p-2">
+                  <div class="form-inline">
+                    <label for="country">البلد</label>
+                    <input type="text" name="country" [(ngModel)]="user.country" class="form-control">
+                    <label for="city">المدينة</label>
+                    <input type="text" name="city" [(ngModel)]="user.city" class="form-control">
+                  </div>
+                </div>
+            </div> 
+          </form>                       
+          </tab>     
+        <tab heading="صوري">
+          <app-photo-editer (getMemberPhotoChange)="updateMainPhoto($event)" [photo]="user.photo"></app-photo-editer>
+          <!--  <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> -->
+        </tab>
+        
+      </tabset>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,11 @@
+.table td{
+    vertical-align: middle;
+    font-family: 'JF-Flat';
+    text-align: center;
+}
+.table th{
+    vertical-align: middle;
+    font-family: 'JF-Flat';
+    text-align: center;
+    font-weight: bolder;
+}

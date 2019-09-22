@@ -1,0 +1,28 @@
+<div class="container mt-1">
+  <div class="row">
+    <div [dir]="authService.dir" class="col-md-11 text-center mt-3">
+      <h3 [hidden]="authService.dir=='ltr'" style="text-align: center; font-family:'Droid-Arabic-Kufi';">{{likeParam === 'Likers' ? 'من أعجبوا بي' : 'من
+        أعجبت بهم'}} : {{pagination.totalItems}}</h3>
+        <h3 [hidden]="authService.dir=='rtl'" style="font-family:'Impact';">{{likeParam === 'Likers' ? 'My Likers' : 'My Likees'}} : {{pagination.totalItems}}</h3>
+    </div>
+    <div [ngClass]="{'float-left': authService.dir ==='rtl'}" class="col-md-1 ">
+      <div class="btn-group-vertical">
+        <button lang type="button" [(ngModel)]="likeParam" btnRadio="Likers" (click)="loadUsers();"  class="btn mb-1 ajs-button btn-up"
+          [ngStyle]="{'background':likeParam ==='Likers'?'red' : ''}">أعجبهم</button>
+        <button lang type="button" [(ngModel)]="likeParam" (click)="loadUsers();" btnRadio="Likees"  class="btn ajs-button btn-down"
+          [ngStyle]="{'background':likeParam ==='Likees'?'red' : ''}">يعجبونني</button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4 ">
+    <div *ngFor="let user of users" class="col-sm-6 col-md-4 col-lg-4 col-xl-2">
+      <app-member-card [user]="user"></app-member-card>
+    </div>
+  </div>
+  <div *ngIf="pagination.totalItems>0" class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [itemsPerPage]="pagination.itemsPerPage" [totalItems]="pagination.totalItems"
+      [(ngModel)]="pagination.currentPage" (pageChanged)="search=true;pageChanged($event);" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>
+</div>

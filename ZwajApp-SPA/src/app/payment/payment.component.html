@@ -1,0 +1,42 @@
+<div [hidden]="successPaid">
+  <h1 lang>عذرا.. هذه الخدمة مدفوعة الأجر يمكنك الإشتراك الآن</h1>
+  <form #checkout="ngForm" (ngSubmit)="onSubmit()" class="checkout">
+    <div class="text-center">
+      <h4 lang> إشتراك مدى الحياة ... فقط خمسون دولار</h4>
+      <div class="mt-4" id="card-info" #cardInfo></div>  
+      <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+    </div>
+    <button [hidden]="authService.dir === 'ltr'" (click)="load()" class="btn btn-primary" type="submit">
+     <span [hidden]="loader">
+        إشترك معنا
+      <i class="fa fa-cc-visa mr-1"></i>
+      <i class="fa fa-cc-mastercard"></i>
+     </span>     
+     <span [hidden]="!loader">
+        إنتظر قليلا
+        <div  class="loader float-left ml-1">
+        </div>
+      </span>     
+     </button>    
+     <button [hidden]="authService.dir === 'rtl'" (click)="load()" class="btn btn-primary" type="submit">
+      <span [hidden]="loader">
+         Join Us
+       <i class="fa fa-cc-visa mr-1"></i>
+       <i class="fa fa-cc-mastercard"></i>
+      </span>     
+      <span [hidden]="!loader">
+         Wait...
+         <div  class="loader float-left ml-1">
+         </div>
+       </span>     
+      </button>    
+  </form>
+  </div>
+   <div [hidden]="!successPaid" class="checkout">
+    <h4 lang>   تم تفعيل إشتراكك معنا مدى الحياة بنجاح  </h4>
+    <br>
+    <h4 lang>   إنتظر قليلاً ليتم تحويلك إلى الخدمة أو أنقر عودة </h4>
+  </div>
+  
+  <button  [hidden]="authService.dir === 'ltr'"  class="btn btn-dark ajs-button " (click)="backClicked();" > عــودة  <i class="fa fa-arrow-left"></i></button>
+  <button  [hidden]="authService.dir === 'rtl'" class="btn btn-dark ajs-button " (click)="backClicked();" > <i class="fa fa-arrow-left"></i> Back</button>

@@ -1,0 +1,65 @@
+ <!--<form #registerForm="ngForm" (ngSubmit)="register()" class="rtl">
+ -->
+<form (ngSubmit)="register()" [formGroup]="registerForm" class="rtl">
+    <h4 style="font-weight:bold;font-family:'JF Flat';" class="text-center text-dark">شريكك في الحياة بإنتظارك</h4>
+    <hr>
+    <div style="font-weight:bold;font-family:'JF Flat';" class="form-group">
+        <label  class="control-label" style="margin-right:10px"><strong>أنا</strong> </label>
+        <label class="radio-inline ml-3  ">
+          <input class="mr-1" type="radio" value="رجل" formControlName="gender">رجل
+        </label>
+        <label class="radio-inline ml-3">
+          <input class="mr-1" type="radio" value="إمرأة" formControlName="gender">إمرأة
+        </label>
+    </div>      
+    <div class="form-group">
+    <!--    <input name="username" [(ngModel)]="model.username"  type="text" class="form-control" placeholder="إسم المشترك">-->
+      <input formControlName="username" type="text" [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}" class="form-control" placeholder="إسم المشترك">
+      <div class="invalid-feedback">ادخل اسمك</div>
+    </div>
+    <!--<div class="form-group">
+      <label for="selectValue"></label>
+      <select class="form-control" name="selectValue" id="selectValue">
+        <option *ngFor="let value of valuesFromRegister" [value]="value">{{value.name}}</option>
+      </select>
+    </div>-->
+    <div class="form-group">
+        <input [ngClass]="{'is-invalid': registerForm.get('knownAs').errors && registerForm.get('knownAs').touched}" class="form-control"
+          placeholder="إسم الشهرة" formControlName="knownAs">
+        <div class="invalid-feedback" *ngIf="registerForm.get('knownAs').touched && registerForm.get('knownAs').hasError('required')">أدخل إسم الشهرة</div>
+    </div>
+    <div class="form-group">
+        <input [ngClass]="{'is-invalid': registerForm.get('dateOfBirth').errors && registerForm.get('dateOfBirth').touched}"
+          class="form-control" placeholder="تاريخ الميلاد" formControlName="dateOfBirth" type="text" bsDatepicker [bsConfig]="bsConfig">
+        <div class="invalid-feedback" *ngIf="registerForm.get('dateOfBirth').touched && registerForm.get('dateOfBirth').hasError('required')">أدخل تاريخ ميلادك</div>
+    </div>
+    <div class="form-group">
+        <input [ngClass]="{'is-invalid': registerForm.get('city').errors && registerForm.get('city').touched}" class="form-control"
+          placeholder="المدينة" formControlName="city">
+        <div class="invalid-feedback" *ngIf="registerForm.get('city').touched && registerForm.get('city').hasError('required')">أدخل إسم مدينتك</div>
+    </div>
+    <div class="form-group">
+        <input [ngClass]="{'is-invalid': registerForm.get('country').errors && registerForm.get('country').touched}" class="form-control"
+          placeholder="البلد" formControlName="country">
+        <div class="invalid-feedback" *ngIf="registerForm.get('country').touched && registerForm.get('country').hasError('required')">أدخل إسم بلدك</div>
+    </div>
+    <div class="form-group">
+      <input formControlName="password" type="password" [ngClass]="{'is-invalid': registerForm.get('password').errors && registerForm.get('password').touched}" class="form-control" placeholder="كلمة السر">
+      <div *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched" class="invalid-feedback">ادخل كلمة السر</div>
+      <div *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched" class="invalid-feedback">  يجب أن لاتقل كلمة السر عن أربعة خانات</div>
+      <div *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched" class="invalid-feedback">يجب أن لا تزيد عن ثمان خانات</div>
+    </div>
+    <div class="form-group">
+        <input formControlName="confirmPassword" type="password" [ngClass]="{'is-invalid': registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched || registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch')}" class="form-control" placeholder="تأكيد كلمة السر">
+        <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched" > ادخل  كلمة السر مرة اخري </div>
+        <div class="invalid-feedback" *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword').touched">لا تطابق كلمة السر </div>
+    </div>
+  
+    <div class="form-group text-center">
+      <button [disabled]= "!registerForm.valid" style="font-weight:bold;font-family:'JF Flat';" class="btn btn-primary btn-lg" type="submit">إشتراك</button>
+      <button (click)="cancel()" style="font-weight:bold;font-family:'JF Flat';" class="btn btn-primary btn-lg ml-2" type="button">ليس الأن</button>
+    </div>
+  
+</form> 
+ <!-- <p>Form Value : {{registerForm.value | json}}</p>
+  <p>Form Value : {{registerForm.status}}</p> -->

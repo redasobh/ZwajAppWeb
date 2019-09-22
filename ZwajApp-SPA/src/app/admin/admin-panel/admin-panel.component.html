@@ -1,0 +1,21 @@
+<div class="container mt-3">
+  <div class="header-container mb-2">
+      <h3 class="page-header">لوحة الإدارة</h3>
+  </div>
+  <div class="tab-panel">
+    <button style="font-size:1.1rem!important" (click)="printAll();" class="btn ajs-button ajs-header float-left">طباعة الكل</button>
+    <tabset class="member-tabset">
+    <!--  <tab heading="إدارة المستخدمين" *appHasRole="['Admin']">-->
+        <tab heading="إدارة المستخدمين" *appHasRole="['Admin']">
+      <div class="container">
+      <app-user-management></app-user-management>
+      </div>
+    </tab>
+    <!--*appHasRole="['Admin', 'Moderator']"-->
+    <tab heading="إدارة الصور " *appHasRole="['Admin', 'Moderator']">
+      <app-photo-management></app-photo-management>
+    </tab>
+    </tabset>    
+  </div>
+</div>
+<app-all-members-report #report></app-all-members-report>

@@ -1,0 +1,32 @@
+<div class="card mb-4">
+<div class="text-center wrapper" >
+  <img class="card-img-top" src="{{user.photoURL || 'assets/User.png'}}" alt="{{user.knownAs}}">
+  <ul dir="ltr" class="list-inline members-icons animate text-center">
+    <li class="list-inline-item">
+      <button class="btn btn-sm btn-outline-danger" [routerLink]="['/members/', user.id]">
+        <i class="fa fa-user"></i>
+      </button>
+    </li>
+    <li class="list-inline-item">
+        <button (click)="sendLike(user.id)" class="btn btn-sm btn-outline-danger">
+          <i class="fa fa-heart"></i>
+        </button>
+      </li>
+      <li class="list-inline-item">
+          <button class="btn btn-sm btn-outline-danger" [routerLink]="['/members/', user.id]"
+          [queryParams]="{tab:3}">
+            <i class="fa fa-envelope"></i>
+          </button>
+        </li>
+  </ul>
+</div>
+  <div class="card-bady p-1">
+      <h6 [hidden]="authService.dir=='ltr'" style="font-weight:bold;font-family:'JF Flat';font-size:1.1rem" class="card-title text-center mb-1"><i class="fa fa-user"></i>
+        {{user.knownAs || user.userName | titlecase}} &nbsp; {{user.age}}
+      </h6>
+      <h6 [hidden]="authService.dir=='rtl'" style="font-weight:bold;font-family:'arial';font-size:1.1rem" class="card-title text-center mb-1"><i class="fa fa-user"></i>
+        {{ user.userName | titlecase}} &nbsp; {{user.age}}
+      </h6>   <!--style="font-weight:bold;font-family:'JF Flat';font-size:1.0rem"-->
+      <p lang [ngStyle]="{'font-family': authService.dir==='rtl'? 'JF Flat':'arial', 'font-weight': authService.dir==='rtl'?'bolder':'bold'}" class="card-text text-dark text-center">{{user.city}}</p>
+</div>
+</div>

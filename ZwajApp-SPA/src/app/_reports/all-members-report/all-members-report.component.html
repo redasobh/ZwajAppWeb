@@ -1,0 +1,32 @@
+<div class="text-center" id="print" style ="display:none;">
+  <div style="width: 50% !important;" class="container mt-5">
+          <h2 class="header">تقرير بيانات المشتركين <span> &nbsp;</span></h2>
+   </div>
+     <table >
+          <tr>
+           <th>#</th>
+           <th>الإسم</th>
+           <th>العمر</th>
+           <th>تاريخ الإشتراك</th>
+           <th>المدينة</th>
+           <th>البلد</th>
+         </tr>
+         
+         <tr *ngFor="let user of users let i = index">
+             <td>{{i+1}}</td>
+             <td>{{user?.knownAs}}</td>
+             <td>{{user?.age}}</td>
+             <td>{{user?.created | date:'dd/MM/yyyy'}}</td>
+             <td>{{user?.city}}</td>
+             <td>{{user?.country}}</td>
+         </tr>   
+     </table> 
+     <div style="width: 80% !important;" class="container mt-5">
+      <h2 class="header">إجمالي عدد المشتركين <span class="ml-4"> {{users?.length}} </span></h2>
+   </div>
+   <div style="width: 90% !important;" class="container-up">
+          <h2 class="header-up"><span style="color:red">❤</span>موقع<span>&nbsp;</span>زواج<span style="color:red">❤</span>  برمجة وتصميم م&nbsp; / محمد  رضا صبح</h2>
+          <span>  &nbsp;</span>
+          <span>  &nbsp;</span>
+       </div>
+</div>

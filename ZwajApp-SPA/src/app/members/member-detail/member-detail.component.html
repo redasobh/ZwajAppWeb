@@ -1,0 +1,79 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4 mt-3">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{user.photoURL || 'assets/User.png'}}" alt="{{user.knownAs}}">
+        <div class="card-body">
+          <div>
+            <strong>مكان الاقامة </strong>
+            <p>{{user.country}} - {{user.city}}</p>
+          </div>
+          <div>
+            <strong>العمر</strong>
+            <p>{{age}}</p>
+          </div>
+          <div>
+            <strong> آخر ظهور</strong>
+            <p>{{user.lastActive | timeAgo }}</p>
+          </div>
+          <div>
+            <strong> مشترك منذ</strong>
+            <p>{{created}}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <button class="btn btn-primary w-100">اعجاب</button>
+            <button class="btn btn-success w-100" (click)="selectTab(3)">مراسلة</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-Panel">
+        <tabset #memberTabs class="member-tabset">
+          <tab heading="أنا {{user?.knownAs}}">
+            <div class="card">
+                <div class="card-header">
+                    <h4>أعرفك بنفسي</h4>
+                  </div>
+                  <div class="card-text mt-3 p-2">
+                    <p #intro>{{user.introduction | slice :0:200}}</p>
+                  </div>
+                  <button [hidden]='!showIntro' class="btn btn-primary" (click)="intro.innerText = user.introduction; showIntro= false;">أقراء المزيد</button>
+                  <button [hidden]='showIntro' class="btn btn-danger" (click)="intro.innerText = user.introduction.slice(0,200); showIntro= true;">تصغير</button>
+            </div>           
+            <div class="card mt-4">
+                <div class="card-header">
+                  <h4 >أبحث عن</h4>
+                </div>
+                <div class="card-text mt-3 p-2">
+                  <p #look>{{user.lookFor | slice:0:200}}</p>
+                </div>
+                <button [hidden]='!showLook' class="btn btn-primary" (click)="look.innerText = user.lookFor; showLook= false;">أقراء المزيد</button>
+                <button [hidden]='showLook' class="btn btn-danger" (click)="look.innerText = user.lookFor.slice(0,200); showLook= true;">تصغير</button>
+            </div>           
+          </tab>
+        <tab heading="هواياتي">
+          <div class="card">
+              <div class="card-header">
+                  <h4>هواياتي</h4>
+                </div>
+                <div class="card-text mt-3 p-2">
+                    <p>{{user.interests}}</p>
+                </div>
+          </div>
+        </tab>
+        <tab heading="ألبوم الصور">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+        </tab>
+        <tab heading="الرسائل" (deselect)="deselect();">
+          <!-- <h4>الرسائل</h4> -->
+          <app-member-messages *ngIf="paid" [recipientId]="user.id"></app-member-messages>
+          <app-payment *ngIf="!paid" ></app-payment>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+</div>

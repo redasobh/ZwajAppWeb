@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="ml-4 img-wrapper" *ngFor="let photo of photo">
+        <img src="{{photo.url}}" class="img-thumbnail" [ngClass]="!photo.isApproved && 'not-approved'" alt="" >
+        <div class="text-center img-text" *ngIf="!photo.isApproved">
+            <span class="text-danger">بإنتظار الموافقة</span>
+        </div>
+        <div class="row text-center mb-4" style="margin-right:2px;margin-top:-3px;">
+            <button type="button" (click)="SetMainPhoto(photo)"  [disabled]="photo.isMain || !photo.isApproved" [ngClass]="photo.isMain ?  'btn btn-sm btn-success btn-down' : 'btn btn-sm btn-outline-success btn-down'" ><strong>أساسية</strong></button>
+            <button type="button" [disabled]="photo.isMain" (click)="delete(photo.id)" class="btn btn-sm btn-outline-danger btn-down"><i class="fa fa-trash-o"></i></button>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-4 mt-5 Font-Kufi">
+
+        <h4 class="Font-Kufi">إختر الصور</h4>
+
+        <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
+            [class.bg-warning]="hasBaseDropZoneOver"  class="card mt-5 text-center p-3 my-drop-zone">
+            <i [class.text-danger]="hasBaseDropZoneOver" class="fa fa-upload fa-4x"></i>
+            <p>سحب و إفلات الصور</p>
+        </div>
+ <div class="btn-group-vertical">
+    <input [hidden] ="true" #uploadMult type="file" ng2FileSelect [uploader]="uploader" multiple />
+    <button  class="btn ajs-button btn-up"  (click)="uploadMult.click();" >
+       إختر صور متعددة 
+    </button>
+   
+    <input [hidden] ="true" #uploadOne type="file" ng2FileSelect [uploader]="uploader" />
+    <button  class="mt-1 btn ajs-button btn-down"  (click)="uploadOne.click();" >
+        إختر صورة واحدة 
+    </button>
+ </div>
+ </div>
+  
+    <div *ngIf="uploader?.queue?.length" class="col-sm-8 mt-5 Font-Kufi" style="margin-bottom: 40px">
+
+        <h4 class="Font-Kufi">ملفات الصور</h4>
+        <p>عدد الصور: {{ uploader?.queue?.length }}</p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="50%">الإسم</th>
+                    <th>الحجم</th>
+                    <th colspan="3"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-right" *ngFor="let item of uploader.queue">
+                    <td style="overflow: hidden;"><strong>{{ item?.file?.name }}</strong></td>
+                    <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+               
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-sm btn-up mr-1" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <i class="fa fa-upload"></i> تحميل
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm mr-1 btn-up" (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <i class="fa fa-ban"></i> إلغاء
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm mr-1 btn-up" (click)="item.remove()">
+                            <i class="fa fa-trash-o"></i> حذف
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <div>
+               <p style="text-align: right;margin-right:20px;" class="mb-1">تقدم التحميل </p> 
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+            </div>
+            <div class="text-center p-3">
+                <button type="button" class="btn btn-success mr-1 " (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <i class="fa fa-upload"></i> تحميل الكل
+                </button>
+                <button type="button" class="btn btn-warning mr-1" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <i class="fa fa-ban"></i> إلغاء الكل
+                </button>
+                <button type="button" class="btn btn-danger mr-1" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <i class="fa fa-trash-o"></i> حذف الكل
+                </button>
+            </div>
+           
+        </div>
+
+    </div>
+
+</div>

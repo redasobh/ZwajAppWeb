@@ -1,0 +1,79 @@
+.card {
+    border: none;
+  }
+  .card-body {
+    overflow-y: scroll;
+    height: 350px;
+    }
+  .chat {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .chat li {
+
+    margin-top: 5px;
+    font-weight:bold;
+    font-family:'Tajawal';
+    font-size:1.2rem;
+    border-bottom: 1px dotted #B3A9A9;
+    
+  }
+  
+  .rounded-circle {
+    height: 50px;
+    width: 50px;
+    
+  }
+  
+  
+    .content-outbox{
+        text-align: right;
+        padding-top: 12px;
+        text-indent: 11px;
+      
+     }
+     .content-inbox{
+        text-align: left !important;
+        padding-top: 12px;
+        text-indent: 11px;
+   }
+   .badge{
+    border-radius: 20px;
+    max-height: 58px;
+    padding-top: 4px;
+   }
+   small{
+    font-family:'Tajawal' !important;
+    font-size:1rem !important;
+    color: white !important;
+   }
+
+   .btn-primary:hover{
+    text-decoration: none;
+    color: black !important;
+    background:pink !important;
+    letter-spacing:0.5px;
+    
+  }
+  .btn-primary{
+    text-decoration: none;
+    letter-spacing:0.5px;
+    font-weight:bold;
+    font-family:'JF Flat';
+    font-size:1rem;
+    outline: none;
+    
+      }
+      input{
+        border-radius: 16px 16px 0 0/13px 17px 16px 16px !important; 
+      }
+    
+      button:focus,button {
+        border: none !important;
+        outline:0 !important;
+        outline:none !important;box-shadow:none; }
+    
+ 
+  

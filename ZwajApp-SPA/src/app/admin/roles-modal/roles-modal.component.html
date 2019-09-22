@@ -1,0 +1,21 @@
+<div dir="rtl" class="modal-header ajs-header">
+  <h4 class="modal-title page-header ">تعديل الأدوار الخاصة بـ {{user.userName}}</h4>
+</div>
+<div class="modal-body rtl">
+  <form #rolesForm="ngForm" id="rolesForm">
+    <div  class="form-check" *ngFor="let role of roles">
+      <input
+        class="form-check-input mr-2 Font-Kufi "
+        type="checkbox" value="role.value"
+        [checked]="role.checked"
+        (change)="role.checked = !role.checked"
+        [disabled]="role.value === 'Admin' && user.userName === 'Admin'"
+        >
+      <label class="ml-4 ajs-content">{{role.name}}</label>
+    </div>
+  </form>
+</div>
+<div dir="rtl" class="modal-footer text-center">
+  <button type="button" class="btn ajs-button ajs-header ml-5 " (click)="updateRoles();"  form="rolesForm">إدخال</button>
+  <button type="button" class="btn ajs-button ajs-header mr-5 " (click)="bsModalRef.hide()">إغلاق</button>
+</div>
